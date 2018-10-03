@@ -1,5 +1,5 @@
-# kc2zabbix
-Integration Tool for Kompira cloud to zabbix
+# kc2zabbix_sample
+Integration Tool Samples for Kompira cloud to zabbix
 
 ## Requirements
 - Zabbix 3.4
