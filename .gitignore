@@ -1,0 +1,7 @@
+.python-version
+.project
+.cache
+*.log
+*.py[cod]
+_test*.py
+config.yml
