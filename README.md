@@ -63,6 +63,7 @@ python zabbix_registrar.py [kompira cloud target url]
 ```
 
 Kompira cloudのデータをZabbixに連携する処理を実行します。
+
 引数にはKompira cloudの [管理ノード一覧取得API](https://cloud.kompira.jp/docs/apidoc/#/sonar/get_api_apps_sonar_networks__networkId__managed_nodes__managedNodeId_) または [スナップショットノード一覧取得API](https://cloud.kompira.jp/docs/apidoc/#/sonar/get_api_apps_sonar_networks__networkId__snapshots__snapshotId__nodes) のURLを指定します。
 
 
