@@ -7,10 +7,20 @@ kompira_cloud:
   token: your_kompira_cloud_api_token
 
 general:
-  host_prefix: KompiraCloudNode-     # Zabbixホスト名を生成する際、IPアドレスの前に追加する文字列
-  default_groups:                    # デフォルトで割り当てるホストグループ(最低一つ必要。存在しない場合は自動作成)
+  # Zabbixにホストを登録する際のprefix設定
+  host_prefix: KompiraCloudNode-
+
+  # Zabbixにホストを登録する際、ホストに自動で割り当てるホストグループ
+  # 最低1つ設定する必要があります。
+  # 指定されたホストグループがZabbixに存在しない場合、自動で作成します。
+  default_groups:
     - Kompira cloud hosts
-  default_templates:                 # デフォルトで割り当てるテンプレート
+
+  # Zabbixにホストを塘路k数る際、ホストに自動で割り当てるテンプレート
+  default_templates:
     - Template Module ICMP Ping
-  snmp_templates:                    # SNMPサービスが動作しているノードに割り当てるテンプレート
+
+  # Kompira cloudでSNMPサービスが動作していることが把握できているホストに
+  # 自動で割り当てるテンプレート
+  snmp_templates:
     - Template Net Network Generic Device SNMPv2

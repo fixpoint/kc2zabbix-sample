@@ -6,28 +6,65 @@ Integration Tool for Kompira cloud to zabbix
 - Python 3.6.5
 
 
-## Install
+## Installation
 
-### Install python modules
 ```
 pip install zabbix-api requests PyYAML
 ```
 
-### Make config.yml
+## Setting
 
-Rename config.yml.sample to config.yml
+### config.yml の作成
+
+config.yml.sampleを参考にして、config.ymlを作成してください。
 
 ```
+cp config.yml.sample config.yml
+vi config.yml
+```
+
+```
+# config.yml
 zabbix:
-  server: http://your.zabbix.name/zabbix
+  server: http://your.zabbix.server/zabbix
   username: Admin
   password: zabbix
 
 kompira_cloud:
   token: your_kompira_cloud_api_token
+
+general:
+  # Zabbixにホストを登録する際のprefix設定
+  host_prefix: KompiraCloudNode-
+
+  # Zabbixにホストを登録する際、ホストに自動で割り当てるホストグループ
+  # 最低1つ設定する必要があります。
+  # 指定されたホストグループがZabbixに存在しない場合、自動で作成します。
+  default_groups:
+    - Kompira cloud hosts
+
+  # Zabbixにホストを塘路k数る際、ホストに自動で割り当てるテンプレート
+  default_templates:
+    - Template Module ICMP Ping
+
+  # Kompira cloudでSNMPサービスが動作していることが把握できているホストに
+  # 自動で割り当てるテンプレート
+  snmp_templates:
+    - Template Net Network Generic Device SNMPv2
 ```
 
 ## Usage
+
+### zabbix_registrar
+
+
+```
+python zabbix_registrar.py [kompira cloud target url]
+```
+
+Kompira cloudのデータをZabbixに連携する処理を実行します。
+引数にはKompira cloudの [管理ノード一覧取得API](https://cloud.kompira.jp/docs/apidoc/#/sonar/get_api_apps_sonar_networks__networkId__managed_nodes__managedNodeId_) または [スナップショットノード一覧取得API](https://cloud.kompira.jp/docs/apidoc/#/sonar/get_api_apps_sonar_networks__networkId__snapshots__snapshotId__nodes) のURLを指定します。
+
 
 ```
 python zabbix_registrar.py https://yourspacename.cloud.kompira.jp/apps/sonar/networks/c3805f50-636b-4a75-8c41-e5efcd62ec1d/managed-nodes
