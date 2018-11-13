@@ -43,7 +43,7 @@ general:
   default_groups:
     - Kompira cloud hosts
 
-  # Zabbixにホストを塘路k数る際、ホストに自動で割り当てるテンプレート
+  # Zabbixにホストを登録する際、ホストに自動で割り当てるテンプレート
   default_templates:
     - Template Module ICMP Ping
 
