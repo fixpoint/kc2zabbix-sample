@@ -1,5 +1,5 @@
 # kc2zabbix_sample
-Integration Tool Samples for Kompira cloud to zabbix
+Integration Tool Samples for [Kompira cloud](https://cloud.kompira.jp/) to zabbix
 
 ## Requirements
 - Zabbix 3.4
