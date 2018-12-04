@@ -1,5 +1,5 @@
 # kc2zabbix-sample
-Integration Tool Samples for [Kompira cloud](https://cloud.kompira.jp/) to zabbix
+Import Nodes data to Zabbix Hosts from Kompira cloud
 
 ## Requirements
 - Zabbix 3.4
@@ -8,15 +8,19 @@ Integration Tool Samples for [Kompira cloud](https://cloud.kompira.jp/) to zabbi
 
 ## Installation
 
+### Install Python
+
+- [Ubuntu](http://ubuntuhandbook.org/index.php/2017/07/install-python-3-6-1-in-ubuntu-16-04-lts/)
+- [Windows](https://docs.python.org/3.6/using/windows.html)
+
+### Install Python modules
 ```
 pip install zabbix-api requests PyYAML
 ```
 
-## Setting
+### Make config.yml
 
-### config.yml の作成
-
-config.yml.sampleを参考にして、config.ymlを作成してください。
+Rename `config.yml.sample` to `config.yml`
 
 ```
 cp config.yml.sample config.yml
@@ -55,26 +59,13 @@ general:
 
 ## Usage
 
-### zabbix_registrar
-
-
-```
-python zabbix_registrar.py [kompira cloud target url]
-```
-
-Kompira cloudのデータをZabbixに連携する処理を実行します。
-
-引数にはKompira cloudの [管理ノード一覧取得API](https://cloud.kompira.jp/docs/apidoc/#/sonar/get_api_apps_sonar_networks__networkId__managed_nodes__managedNodeId_) または [スナップショットノード一覧取得API](https://cloud.kompira.jp/docs/apidoc/#/sonar/get_api_apps_sonar_networks__networkId__snapshots__snapshotId__nodes) のURLを指定します。
-
+Import Kompira cloud node list or snapshot-node list to Zabbix Hosts.
 
 ```
-python zabbix_registrar.py https://yourspacename.cloud.kompira.jp/apps/sonar/networks/c3805f50-636b-4a75-8c41-e5efcd62ec1d/managed-nodes
-2018-09-07 20:12:05,671 - [29277] - INFO - Get node list from KompiraCloud
-2018-09-07 20:12:07,315 - [29277] - INFO - Zabbix login: http://your.zabbix.name/zabbix
-2018-09-07 20:12:07,451 - [29277] - INFO - Update Host: KompiraCloudNode-192.168.100.1
-2018-09-07 20:12:07,847 - [29277] - INFO - Update Host: KompiraCloudNode-192.168.100.2
-2018-09-07 20:12:08,160 - [29277] - INFO - Update Host: KompiraCloudNode-192.168.100.3
-2018-09-07 20:12:08,448 - [29277] - INFO - Update Host: KompiraCloudNode-192.168.100.4
-2018-09-07 20:12:08,753 - [29277] - INFO - Update Host: KompiraCloudNode-192.168.100.5
-2018-09-07 20:12:09,068 - [29277] - INFO - Update Host: KompiraCloudNode-192.168.100.6
+# Import Kompira cloud node list to Zabbix Hosts
+$ python zabbix_registrar.py https://yourspacename.cloud.kompira.jp/apps/sonar/networks/<networkId>/managed-nodes
+
+# Import Kompira cloud snapshot-node list to Zabbix Hosts
+$ python zabbix_registrar.py https://yourspacename.cloud.kompira.jp/apps/sonar/networks/<networkId>/snapshots/<snapshotId>/nodes
 ```
+
