@@ -1,33 +1,37 @@
 # kc2zabbix-sample
-Import Nodes data to Zabbix Hosts from Kompira cloud
+Kompira cloudのノード情報をZabbixにインポートするコマンドを提供します。
 
-[Japanese README](README-ja.md)
-
-## Requirements
+## 要件
 - Zabbix 3.4
 - Python 3.6.5
 
 
-## Installation
+## インストール
 
-### Install Python
+### Python のインストール
 
-- [Ubuntu](http://ubuntuhandbook.org/index.php/2017/07/install-python-3-6-1-in-ubuntu-16-04-lts/)
-- [Windows](https://docs.python.org/3.6/using/windows.html)
+お使いの環境に沿って、以下のページを参考に Python 3.6 をインストールしてください。
 
-### Install Python modules
+- [Ubuntu](https://www.python.jp/install/ubuntu/index.html)
+- [CentOS](https://www.python.jp/install/centos/index.html)
+- [Windows](https://www.python.jp/install/windows/install_py3.html)
+
+### Python モジュールのインストール
+
 ```
-pip install zabbix-api requests PyYAML
+$ pip install zabbix-api requests PyYAML
 ```
 
-### Make config.yml
+### config.yml の作成
 
-Rename `config.yml.sample` to `config.yml`
+`config.yml.sample` を参考にして、 `config.yml` を作成してください。
 
 ```
 cp config.yml.sample config.yml
 vi config.yml
 ```
+
+`your_kompira_cloud_api_token` の部分には、お使いのKompira cloudの「全体設定>APIトークン」で発行したトークン文字列を記載してください。
 
 ```
 # config.yml
@@ -59,15 +63,14 @@ general:
     - Template Net Network Generic Device SNMPv2
 ```
 
-## Usage
+## 使用方法
 
-Import Kompira cloud node list or snapshot-node list to Zabbix Hosts.
+Kompira cloudのノード一覧URL、もしくはスナップショットノード一覧URLを指定することで、Zabbix Hostsとしてデータをインポートします。
 
 ```
-# Import Kompira cloud node list to Zabbix Hosts
+# ノード一覧をZabbix Hostsに登録
 $ python zabbix_registrar.py https://yourspacename.cloud.kompira.jp/apps/sonar/networks/<networkId>/managed-nodes
 
-# Import Kompira cloud snapshot-node list to Zabbix Hosts
+# スナップショットノード一覧をZabbix Hostsに登録
 $ python zabbix_registrar.py https://yourspacename.cloud.kompira.jp/apps/sonar/networks/<networkId>/snapshots/<snapshotId>/nodes
 ```
-
